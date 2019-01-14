@@ -1,35 +1,61 @@
-import { TestBed, async } from '@angular/core/testing';
-import { RouterTestingModule } from '@angular/router/testing';
+import { TestBed, async, ComponentFixture } from '@angular/core/testing';
 import { AppComponent } from './app.component';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
+import { HttpLoaderFactory } from './app.module';
+import { BetsTableComponent } from './components/bets-table/bets-table.component';
+import { OptionBarComponent } from './components/option-bar/option-bar.component';
+import { CurrencyChangePipe } from './pipes/currency-change.pipe';
+import { HttpClientModule, HttpClient } from '@angular/common/http';
+import { BetsService } from './services/bets/bets.service';
+import { CurrencyService } from './services/currency/currency.service';
+
 
 describe('AppComponent', () => {
+  let component: AppComponent;
+  let fixture: ComponentFixture<AppComponent>;
+  let compile: any;
+
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [
-        RouterTestingModule
+        HttpClientModule,
+        HttpClientTestingModule,
+        TranslateModule.forRoot({
+          loader: {
+            provide: TranslateLoader,
+            useFactory: HttpLoaderFactory,
+            deps: [HttpClient]
+          }
+        })
       ],
       declarations: [
-        AppComponent
+        AppComponent,
+        BetsTableComponent,
+        OptionBarComponent,
+        CurrencyChangePipe
       ],
+      providers: [
+        BetsService,
+        CurrencyService
+      ]
     }).compileComponents();
+
   }));
 
-  it('should create the app', () => {
-    const fixture = TestBed.createComponent(AppComponent);
-    const app = fixture.debugElement.componentInstance;
-    expect(app).toBeTruthy();
-  });
-
-  it(`should have as title 'bets-dashboard'`, () => {
-    const fixture = TestBed.createComponent(AppComponent);
-    const app = fixture.debugElement.componentInstance;
-    expect(app.title).toEqual('bets-dashboard');
-  });
-
-  it('should render title in a h1 tag', () => {
-    const fixture = TestBed.createComponent(AppComponent);
+  beforeEach(() => {
+    fixture = TestBed.createComponent(AppComponent);
+    component = fixture.componentInstance;
     fixture.detectChanges();
-    const compiled = fixture.debugElement.nativeElement;
-    expect(compiled.querySelector('h1').textContent).toContain('Welcome to bets-dashboard!');
+    compile = fixture.debugElement.nativeElement;
   });
+
+  it('should create the app', () => {
+    expect(component).toBeTruthy();
+  });
+
+  it('should render "app-bets-table"', () => {
+    expect(compile.querySelector('app-bets-table')).toBeTruthy();
+  });
+
 });

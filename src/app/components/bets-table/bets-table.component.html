@@ -1,0 +1,48 @@
+<h1>{{ 'TITLE' | translate }}</h1>
+<div class="block">
+<app-option-bar (currencyStateChanged)="handleCurrencyStateChanged($event)"></app-option-bar>
+<button (click)="stopLiveUpdates()" class="btn--stop_pulling" [disabled]="!liveUpdates">{{ 'STOP-LIVE-BTN' | translate }}</button>
+<button (click)="startLiveUpdates()" class="btn--start_pulling" [disabled]="liveUpdates">{{ 'START-LIVE-BTN' | translate }}</button>
+  <div class="block__header">
+    <div class="block__elem">
+      {{ 'TEAM' | translate }} #1
+    </div>
+    <div class="block__elem">
+        {{ 'VS' | translate }}
+    </div>
+    <div class="block__elem">
+      {{ 'TEAM' | translate }} #2
+    </div>
+  </div>
+  <div class="block__content">
+    <div *ngIf="!bets.length" class="spinner">
+        <img src="/assets/spinner.gif" />
+    </div>
+    <ng-container *ngIf="bets.length" >
+        <div *ngFor="let bet of bets" class="block__content__item">
+                <div class="block_content_row">
+                    <div class="block__row__item block__row__item--team">
+                        {{ bet.teams[0].name }}
+                    </div>
+                    <div class="block__row__item block__row__item--team">
+                        -
+                    </div>
+                    <div class="block__row__item block__row__item--team">
+                        {{ bet.teams[1].name }}
+                    </div>
+                </div>
+                <div class="block_content_row">
+                    <div class="block__row__item block__row__item--win" [class.increase]="bet.teams[0].oddsIncreased === true" [class.decrease]="bet.teams[0].oddsIncreased === false">
+                        {{ bet.teams[0].win | number:'.1-2' | currencyChange: currency }} <i *ngIf="bet.teams[0].oddsIncreased !== undefined" [class.up]="bet.teams[0].oddsIncreased === true" [class.down]="bet.teams[0].oddsIncreased === false"></i>
+                    </div>
+                    <div class="block__row__item block__row__item--win" [class.increase]="bet.oddsIncreased === true" [class.decrease]="bet.oddsIncreased === false">
+                        {{ bet.draw | number:'.1-2' | currencyChange: currency }} <i *ngIf="bet.teams[0].oddsIncreased !== undefined "  [class.up]="bet.oddsIncreased === true" [class.down]="bet.oddsIncreased === false"></i>
+                    </div>
+                    <div class="block__row__item block__row__item--win" [class.increase]="bet.teams[1].oddsIncreased === true" [class.decrease]="bet.teams[1].oddsIncreased === false">
+                        {{ bet.teams[1].win | number:'.1-2' | currencyChange: currency }} <i *ngIf="bet.teams[0].oddsIncreased != undefined"  [class.up]="bet.teams[1].oddsIncreased === true" [class.down]="bet.teams[1].oddsIncreased === false"></i>
+                    </div>
+                </div>
+            </div>
+    </ng-container>
+  </div>
+</div>

@@ -1,1 +1,47 @@
 /* You can add global styles to this file, and also import other style files */
+@import url('https://fonts.googleapis.com/css?family=Montserrat:400,600');
+
+$font-stack: 'Montserrat', sans-serif;
+
+body {
+    margin: 0;
+    padding: 0;
+    font-family: $font-stack;
+    background: #fff;
+  }
+  
+  button, button:hover {
+    cursor: pointer;
+  }
+  
+  input,
+  textarea,
+  button,
+  select,
+  a {
+    -webkit-tap-highlight-color: rgba(0,0,0,0);
+  }
+  
+  ::placeholder {
+    color:#8298B9;
+    opacity:1;
+  }
+  
+  .wrapper {
+    width: 283px;
+    height:auto;
+    position:relative;
+    background:#fff;
+    margin:60px auto 0;
+    padding: 0 0 18px 0;
+    border-radius: 5px;
+    text-align: center;
+    box-shadow: 0 0 5px #ccc;
+    overflow: hidden;
+  }
+  
+  @media only screen and (min-width: 500px) {
+    .wrapper {
+      width: 466px;
+    }
+  }

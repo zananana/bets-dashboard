@@ -1,3 +1,9 @@
+## Changing the enpoint for API
+
+The API endpoint currently points localhost:3000 -> but can be changed to the production one: https://betsys-fe-assessment.herokuapp.com/ in file: src/app/servcies/bets/bets.service.ts
+
+
+
 # BetsDashboard
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 7.2.1.
@@ -5,6 +11,7 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 ## Development server
 
 Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+
 
 ## Code scaffolding
 

@@ -13,8 +13,8 @@ export class BetsService {
 
   private socket;
 
-  private url = 'http://localhost:3000/';
-  // private url = 'https://betsys-fe-assessment.herokuapp.com/';
+  // private url = 'http://localhost:3000/';
+  private url = 'https://betsys-fe-assessment.herokuapp.com/';
 
   public generateBets(size: number): Observable<any> {
       const url = this.url + 'bets-generate?size=' + size;

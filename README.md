@@ -1,6 +1,6 @@
 ## Changing the enpoint for API
 
-The API endpoint currently points localhost:3000 -> but can be changed to the production one: https://betsys-fe-assessment.herokuapp.com/ in file: src/app/servcies/bets/bets.service.ts
+The API endpoint can point localhost:3000  (if you have local backend for this app) currently its pointing this for fast tests: https://betsys-fe-assessment.herokuapp.com/ . Endpoint can be changed in this file: src/app/servcies/bets/bets.service.ts
 
 
 

@@ -69,14 +69,14 @@ describe('OptionBarComponent', () => {
       expect(component.activeLang).toBe('en');
     });
 
-    it('should call the function "changeCurrency" on button 3 and change currency to "USD"', function() {
+    it('should call the function "changeCurrency" on button 3 and change currency to "EUR"', function() {
       spyOn(component, 'changeCurrency').and.callThrough();
 
       const buttons = compile.getElementsByClassName('btn');
       buttons[2].click();
 
-      expect(component.changeCurrency).toHaveBeenCalledWith('USD');
-      expect(component.activeCurrency).toBe('USD');
+      expect(component.changeCurrency).toHaveBeenCalledWith('EUR');
+      expect(component.activeCurrency).toBe('EUR');
     });
 
     it('should call the function "changeCurrency" on button 3 and change currency to "PLN"', function() {

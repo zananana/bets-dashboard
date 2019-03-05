@@ -10,15 +10,10 @@ export class CurrencyChangePipe implements PipeTransform {
     public service: CurrencyService
   ) {}
 
-  transform(value: number): string {
+  transform(value: number, symbol: string): string {
 
-    if (this.service.activeCurrency === 'USD') {
-      return '$ ' + (Math.round((value) * 100) / 100).toFixed(2);
-    } else if (this.service.activeCurrency === 'PLN') {
-      return (Math.round((value * this.service.PlnExchangeRate) * 100) / 100).toFixed(2) + ' zł';
-    } else {
-      return '$ ' + (Math.round((value) * 100) / 100).toFixed(2);
-    }
+    return (Math.round((value * this.service.aciveCurrencyRate) * 100) / 100).toFixed(2) + ' ' + symbol;
+
   }
 
 }

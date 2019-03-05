@@ -47,8 +47,8 @@ describe('BetsTableComponent', () => {
   });
 
   it('should render two buttons', () => {
-    expect(compile.getElementsByClassName('btn--start_pulling')).toBeTruthy();
-    expect(compile.getElementsByClassName('btn--stop_pulling')).toBeTruthy();
+    expect(compile.getElementsByClassName('start_pulling')).toBeTruthy();
+    expect(compile.getElementsByClassName('stop_pulling')).toBeTruthy();
   });
 
   it('should render table', () => {
@@ -57,11 +57,11 @@ describe('BetsTableComponent', () => {
 
   describe('on start button click', function() {
 
-    it('should call the function "startLiveUpdates" on button "btn--start_pulling"', function() {
+    it('should call the function "startLiveUpdates" on button "start_pulling"', function() {
       const expected = true;
       spyOn(component, 'startLiveUpdates').and.callThrough();
 
-      const buttons = compile.getElementsByClassName('btn--start_pulling');
+      const buttons = compile.getElementsByClassName('start_pulling');
       buttons[0].click();
 
       expect(component.startLiveUpdates).toHaveBeenCalled();
@@ -71,7 +71,7 @@ describe('BetsTableComponent', () => {
 
   describe('on stop button click', function() {
 
-    it('should call the function "stopLiveUpdates" on button "btn--stop_pulling"', function() {
+    it('should call the function "stopLiveUpdates" on button "stop_pulling"', function() {
       const expected = false;
 
       component.liveUpdates = true;
@@ -79,7 +79,7 @@ describe('BetsTableComponent', () => {
 
       spyOn(component, 'stopLiveUpdates').and.callThrough();
 
-      const buttons = compile.getElementsByClassName('btn--stop_pulling');
+      const buttons = compile.getElementsByClassName('stop_pulling');
       buttons[0].click();
 
       expect(component.stopLiveUpdates).toHaveBeenCalled();

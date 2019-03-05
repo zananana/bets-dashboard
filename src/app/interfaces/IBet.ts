@@ -10,3 +10,8 @@ export interface IBet {
     draw: number;
     oddsIncreased?: boolean;
   }
+
+  export interface IGenerateBetResponse {
+    bets: IBet[];
+    ok: number;
+  }

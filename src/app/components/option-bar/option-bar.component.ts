@@ -17,9 +17,9 @@ export class OptionBarComponent implements OnInit {
   @Output()
   public currencyStateChanged: EventEmitter<boolean> = new EventEmitter();
 
-  public activeLang = 'en';
+  public activeLang = this.translate.currentLang;
 
-  public activeCurrency = 'USD';
+  public activeCurrency = this.service.activeCurrency;
 
   changeLanguage(lang) {
     this.translate.use(lang);
@@ -29,8 +29,11 @@ export class OptionBarComponent implements OnInit {
   changeCurrency(curr) {
     this.service.activeCurrency = curr;
     this.activeCurrency = curr;
+    this.service.getCurrency(curr).subscribe(data => {
+        this.service.aciveCurrencyRate = data.rates[curr];
+        this.currencyStateChanged.emit(curr);
+    });
 
-    this.currencyStateChanged.emit(curr);
   }
 
   ngOnInit() {

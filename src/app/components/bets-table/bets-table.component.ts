@@ -2,6 +2,7 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { BetsService } from 'src/app/services/bets/bets.service';
 import { IBet } from 'src/app/interfaces/IBet';
 import * as _ from 'lodash';
+import { Observable } from 'rxjs';
 
 
 @Component({
@@ -15,12 +16,14 @@ export class BetsTableComponent implements OnInit, OnDestroy {
     private service: BetsService
     ) { }
 
-  public currency = 'USD';
+  public currency = 'EUR';
 
   public bets: IBet[] = [];
+  // public bets$: Observable<IBet[]> = this.service.generateBets(5);
+
   public betsStream = [];
-  public connection;
-  public pulling;
+  public connection$;
+  public pulling$;
 
   public liveUpdates = false;
 
@@ -31,15 +34,15 @@ export class BetsTableComponent implements OnInit, OnDestroy {
   stopLiveUpdates() {
     this.liveUpdates = false;
     this.service.stopLiveUpdate().subscribe((res) => {
-      this.connection.unsubscribe();
-      this.pulling.unsubscribe();
+      this.connection$.unsubscribe();
+      this.pulling$.unsubscribe();
     });
   }
 
   startLiveUpdates() {
     this.liveUpdates = true;
-    this.pulling = this.service.startLiveUpdate().subscribe(() => {
-      this.connection = this.service.getUpdatedBets().subscribe((data: IBet[]) => {
+    this.pulling$ = this.service.startLiveUpdate().subscribe(() => {
+      this.connection$ = this.service.getUpdatedBets().subscribe((data: IBet[]) => {
       this.betsStream = [];
       /*
       ** Only unique id as from the service we're getting
@@ -74,6 +77,7 @@ export class BetsTableComponent implements OnInit, OnDestroy {
       });
     });
   }
+
 
   ngOnInit() {
     this.service.generateBets(5).subscribe(data => {

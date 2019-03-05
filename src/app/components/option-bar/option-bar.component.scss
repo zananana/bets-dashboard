@@ -12,10 +12,11 @@
     border-right: 1px solid #222;
     color:#ddd;
     background: transparent;
-}
-.btn:last-child {
-    border-right:none;
-}
-.btn.active {
-    color:rgb(233, 115, 86);
+
+    &:last-child {
+        border-right:none;
+    }
+    &.active {
+        color:rgb(233, 115, 86);
+    }
 }
